@@ -1,1 +1,80 @@
-<p>basicos reactivos works!</p>
+<h2>Reactivos: Básicos</h2>
+<hr>
+<div class="row">
+    <div class="col">
+
+        <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+            <!-- Campo de producto-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Producto</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="nombre"
+                           placeholder="Nombre del producto">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('nombre')">
+                          Debe ser de 3 letras
+                    </span>
+                </div>
+            </div>
+            <!-- Campo de precio-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Precio</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="precio"
+                           placeholder="Precio del producto">
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('precio')">
+                          Debe ser de mayor o igual a 0
+                    </span>
+                </div>
+            </div>
+            <!-- Campo de existencia-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Existencias</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="existencias"
+                           placeholder="Existencias del producto">
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('existencias')">
+                          Debe ser de mayor o igual a 0
+                    </span>
+                 </div>
+            </div>
+
+            <div>
+                <button type="submit" 
+                        class="btn btn-primary float-end">
+                        Guardar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="row row-cols-auto">
+    <div class="col">
+        <span>Valid</span>
+        <pre>{{ miFormulario.valid }}</pre> 
+    </div>
+    <div class="col">
+        <span>Pristine</span>
+        <pre>{{ miFormulario.pristine }}</pre> 
+    </div>
+    <div class="col">
+        <span>Touched</span>
+        <pre>{{ miFormulario.touched }}</pre> 
+    </div>
+</div>
+<div class="row row-cols-auto">
+    <div class="col">
+        <span>Value</span>
+        <pre>{{ miFormulario.value | json }}</pre> 
+    </div>
+</div>
