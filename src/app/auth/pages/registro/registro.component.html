@@ -1,0 +1,105 @@
+<h2>Registro</h2>
+<hr>
+<div class="row">
+    <div class="col">
+
+        <form [formGroup]="miFormulario" (ngSubmit)="guardar()" autocomplete="off" >
+            <!-- Campo nombre-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="nombre"
+                           placeholder="Nombre del usuario">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('nombre')">
+                          El nombre del usuario es requerido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo email-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Email</label>
+                <div class="col-sm-9">
+                    <input type="email"
+                           class="form-control"
+                           formControlName="email"
+                           placeholder="Email">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('email')">
+                          El correo es requerido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo username-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Username</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="username"
+                           placeholder="Username">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('username')">
+                          El username es requerido y no puede ser Strider
+                    </span>
+                </div>
+            </div>
+
+           <!-- Campo password-->
+            <div class="row mb-3">
+                <label class="col-form-label col-sm-3">Password</label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password"
+                           placeholder="Ingrese la contraseña">
+                </div>
+            </div>
+
+           <!-- Campo password2-->
+           <div class="row mb-3">
+            <label class="col-form-label col-sm-3">Confirmar</label>
+            <div class="col-sm-9">
+                <input type="password"
+                       class="form-control"
+                       formControlName="password2"
+                       placeholder="Confirmar la contraseña">
+            </div>
+        </div>
+
+            <div>
+                <button type="submit" 
+                        class="btn btn-primary float-end">
+                        Guardar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="row row-cols-auto">
+    <div class="col">
+        <span>Valid</span>
+        <pre>{{miFormulario.valid}}</pre>
+    </div>
+    <div class="col">
+        <span>Touched</span>
+        <pre>{{miFormulario.touched}}</pre>
+    </div>
+    <div class="col">
+        <span>Errors Nombre</span>
+        <pre>{{miFormulario.controls['nombre'].errors | json}}</pre>
+        <span>Errors Email</span>
+        <pre>{{miFormulario.controls['email'].errors | json}}</pre>
+        <span>Errors Username</span>
+        <pre>{{miFormulario.controls['username'].errors | json}}</pre>
+    </div>
+    <div class="col">
+        <span>Value</span>
+        <pre>{{miFormulario.value | json}}</pre>
+    </div>
+</div>
