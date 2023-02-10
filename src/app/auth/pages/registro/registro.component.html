@@ -27,9 +27,9 @@
                            class="form-control"
                            formControlName="email"
                            placeholder="Email">
-                    <span class="form-text text-danger"
+                           <span class="form-text text-danger"
                            *ngIf="campoNoValido('email')">
-                          El correo es requerido
+                          {{emailErrorMsg}}
                     </span>
                 </div>
             </div>
@@ -57,6 +57,10 @@
                            class="form-control"
                            formControlName="password"
                            placeholder="Ingrese la contraseña">
+                    <span class="form-text text-danger"
+                           *ngIf="campoNoValido('password')">
+                          La contraseña debe ser de 6 caracteres
+                    </span>
                 </div>
             </div>
 
@@ -68,12 +72,17 @@
                        class="form-control"
                        formControlName="password2"
                        placeholder="Confirmar la contraseña">
+                <span class="form-text text-danger"
+                        *ngIf="campoNoValido('password2')">
+                        Las contraseñas deben ser iguales
+                </span>
             </div>
         </div>
 
             <div>
                 <button type="submit" 
-                        class="btn btn-primary float-end">
+                        class="btn btn-primary float-end"
+                        [disabled]="miFormulario.pending">
                         Guardar</button>
             </div>
 
@@ -83,11 +92,13 @@
 
 <div class="row row-cols-auto">
     <div class="col">
-        <span>Valid</span>
+        <span><b>Form Valid</b></span>
         <pre>{{miFormulario.valid}}</pre>
-    </div>
-    <div class="col">
-        <span>Touched</span>
+        <span><b>Form Status</b></span>
+        <pre>{{miFormulario.status}}</pre>
+        <span><b>Form Errors</b></span>
+        <pre>{{miFormulario.errors | json}}</pre>
+        <span><b>Touched</b></span>
         <pre>{{miFormulario.touched}}</pre>
     </div>
     <div class="col">
@@ -97,6 +108,10 @@
         <pre>{{miFormulario.controls['email'].errors | json}}</pre>
         <span>Errors Username</span>
         <pre>{{miFormulario.controls['username'].errors | json}}</pre>
+        <span>Errors Password</span>
+        <pre>{{miFormulario.controls['password'].errors | json}}</pre>
+        <span>Errors Password2</span>
+        <pre>{{miFormulario.controls['password2'].errors | json}}</pre>
     </div>
     <div class="col">
         <span>Value</span>
